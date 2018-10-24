@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.study.springBoot.mapper.UserInfoMapper" >
+    <resultMap id="BaseResultMap" type="com.study.springBoot.entity.UserInfo" >
+        <id column="uid" property="uid" jdbcType="BIGINT" />
+        <result column="name" property="name" jdbcType="VARCHAR" />
+        <result column="password" property="password" jdbcType="VARCHAR" />
+        <result column="salt" property="salt" jdbcType="VARCHAR"/>
+        <result column="state" property="state" jdbcType="VARCHAR" />
+        <result column="username" property="username" jdbcType="VARCHAR" />
+    </resultMap>
+    <sql id="Base_Column_List" >
+        uid, name, password, salt, state,username
+    </sql>
+    <select id="multQuery" resultMap="BaseResultMap"  >
+       SELECT 
+       <include refid="Base_Column_List" />
+	   FROM user_info
+	   where username = #{username}
+    </select>
+</mapper>
